@@ -1,0 +1,9 @@
+# Ignore IDEs directories
+.vscode
+.vs
+
+# Ignore CMake directories
+build
+
+# Ignore dev directories
+dev

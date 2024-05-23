@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(ApiGateway VERSION 0.0.1)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+set(API_GATEWAY_INCLUDE "${CMAKE_SOURCE_DIR}/include")
+set(API_GATEWAY_SRC "${CMAKE_SOURCE_DIR}/src")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/$<CONFIG>")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib/$<CONFIG>")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib/$<CONFIG>")
+set(CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/pdb/$<CONFIG>")
+
+find_package(Boost REQUIRED COMPONENTS json url)
+
+file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+
+add_executable(ApiGateway ${SOURCES})
+
+target_include_directories(ApiGateway 
+    PUBLIC ${API_GATEWAY_INCLUDE}
+    PUBLIC ${Boost_INCLUDE_DIRS})
+
+target_link_libraries(ApiGateway 
+    PUBLIC ${Boost_LIBRARIES})

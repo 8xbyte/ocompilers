@@ -1,0 +1,6 @@
+# IDEs
+.vs
+.vscode
+
+# Configs directory
+configs

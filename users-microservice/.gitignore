@@ -1,0 +1,9 @@
+# Ignore ASP.NET Core build directories
+bin
+obj
+
+# Ignore ASP.NET Core setting file
+appsettings.json
+
+# Ignore ASP.NET Core properties directories
+Properties
