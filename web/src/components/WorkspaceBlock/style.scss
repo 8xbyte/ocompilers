@@ -1,0 +1,16 @@
+.current-workspace-block {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 0px) {
+        width: 100%;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 300px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 400px;
+    }
+}

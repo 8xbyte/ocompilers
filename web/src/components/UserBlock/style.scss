@@ -1,0 +1,37 @@
+.user-block {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    text-align: center;
+
+    &>*:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    .workspace-block {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .workspace-input {
+            background-color: #1e1e1e;
+            border: 0;
+        }
+        
+        .workspace-input:read-only {
+            cursor: pointer;
+        }
+
+        .workspace-buttons {
+            & > * {
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            & > *:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+    }
+}

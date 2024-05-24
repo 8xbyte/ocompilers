@@ -1,0 +1,23 @@
+.default-input {
+    border-radius: 5px;
+    outline: none;
+    background: #3c3c3c;;
+    padding: 5px 10px;
+    border: 1px solid #1e1e1e;
+    font-family: Consolas, "Courier New", monospace;
+    font-weight: 400;
+    font-size: 14px;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-variation-settings: normal;
+    line-height: 19px;
+    color: #d4d4d4;
+    transition: all 0.5s ease-in-out;
+
+    &:focus {
+        border-color: #007fd4;
+    }
+
+    &:hover {
+        border-color: #1177bb;
+    }
+}

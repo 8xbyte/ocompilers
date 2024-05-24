@@ -1,0 +1,70 @@
+.explorer-block {
+    margin: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .workspace-line {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+
+        .workspace-title {
+            font-size: 16px;
+        }
+
+        .workspace-buttons {
+            display: flex;
+            align-items: center;
+
+            &>* {
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            &>*:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .section-line {
+        margin: 10px 0;
+        height: 1px;
+        background: #d4d4d4;
+    }
+
+    .filesystem {
+        overflow: auto;
+        flex: 1;
+
+        .file {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+
+            .file-input {
+                cursor: pointer;
+                border: 0;
+                background-color: #1e1e1e;
+            }
+
+            .file-block {
+                display: flex;
+                
+                .file-icon {
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+
+                & > *:not(:last-child) {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        & > * {
+            margin-left: 0;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.default-button {
+    font-family: Consolas, "Courier New", monospace;
+    font-weight: 600;
+    font-size: 14px;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-variation-settings: normal;
+    line-height: 19px;
+    color: #1e1e1e;
+    background-color: #007fd4;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 0;
+    transition: all 0.5s ease-in-out;
+    color: #d4d4d4;
+
+    &:hover {
+        background-color: #1177bb;
+    }
+}

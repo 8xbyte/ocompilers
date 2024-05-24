@@ -1,0 +1,28 @@
+.buttons-block {
+    display: flex;
+    justify-content: space-between;
+
+    .side-block {
+        display: flex;
+
+        .button-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 5px;
+        }
+
+        .language-select {
+            border: 0;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            border: 1px solid #007fd4;
+            border-radius: 5px;
+            padding: 5px 10px;
+
+            & > select {
+                background-color: black;
+            }
+        }
+    }
+}

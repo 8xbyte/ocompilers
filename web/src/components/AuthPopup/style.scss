@@ -1,0 +1,54 @@
+.auth-popup {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(#000, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    .auth-block {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.5s ease-in-out;
+        min-width: 300px;
+
+        .auth-block-title {
+            font-size: 20px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .auth-input-title {
+            margin-top: 10px;
+        }
+
+        .auth-input {
+            margin-top: 5px;
+        }
+
+        .auth-button {
+            margin-top: 20px;
+        }
+
+        .text-info {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .text-link {
+            color: #007fd4;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+
+            &:hover {
+                color: #1177bb;
+            }
+        }
+    }
+}

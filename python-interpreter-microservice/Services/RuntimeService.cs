@@ -19,7 +19,7 @@ namespace PythonInterpreterMicroservice.Services {
         }
         public async Task<int> RunReleaseAsync(string path, string executableFile, ProcessConfig config) {
             var processExitCode = await _processService.RunAsync("bash", new ProcessConfig {
-                Arguments = $"-c \"timeout --kill-after=30s 30s docker run -i --rm -v ./{path}:/app -m 100m --cpus=0.1 python/runtime {executableFile}\"",
+                Arguments = $"-c \"timeout --kill-after=30s 30s docker run -i --rm -v ./{path}:/app -m 100m --cpu-period=100000 --cpu-quota=5000 python/runtime {executableFile}\"",
                 StartAction = config.StartAction,
                 OutputAction = config.OutputAction,
                 ErrorAction = config.ErrorAction,
@@ -31,7 +31,7 @@ namespace PythonInterpreterMicroservice.Services {
         }
         public async Task<int> RunDebugAsync(string path, string executableFile, ProcessConfig config) {
             var processExitCode = await _processService.RunAsync("bash", new ProcessConfig {
-                Arguments = $"-c \"timeout --kill-after=30s 30s docker run -i --rm -v ./{path}:/app -m 100m --cpus=0.1 python/runtime/debug {executableFile}\"",
+                Arguments = $"-c \"timeout --kill-after=30s 30s docker run -i --rm -v ./{path}:/app -m 100m --cpu-period=100000 --cpu-quota=5000 python/runtime/debug {executableFile}\"",
                 StartAction = config.StartAction,
                 OutputAction = config.OutputAction,
                 ErrorAction = config.ErrorAction,

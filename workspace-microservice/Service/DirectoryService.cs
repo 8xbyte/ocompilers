@@ -1,6 +1,7 @@
 ﻿namespace WorkspaceMicroservice.Service {
     public interface IDirectoryService {
         public bool CreateDirectory(string path);
+        public bool RenameDirectory(string oldPath, string newPath);
         public long GetDirectorySize(string path);
         public bool DeleteDirectory(string path);
     }
@@ -8,6 +9,14 @@
         public bool CreateDirectory(string path) {
             if (!Directory.Exists(path)) {
                 Directory.CreateDirectory(path);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RenameDirectory(string oldPath, string newPath) {
+            if (Directory.Exists(oldPath) && !Directory.Exists(newPath)) {
+                Directory.Move(oldPath, newPath);
                 return true;
             }
             return false;

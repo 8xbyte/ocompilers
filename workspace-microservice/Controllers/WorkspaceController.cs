@@ -52,69 +52,6 @@ namespace WorkspaceMicroservice.Controllers {
             }));
         }
 
-        [HttpGet("open")]
-        public async Task OpenWorkspace(int id) {
-            if (HttpContext.WebSockets.IsWebSocketRequest) {
-                using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
-                
-                try {
-                    var workspace = await _workspaceService.GetWorkspaceByIdAsync(id);
-                    if (workspace == null) {
-                        await webSocket.SendAsync<IWorkspaceError>(new() {
-                            Message = "Workspace not found"
-                        });
-
-                        throw new Exception("Workspace not found");
-                    }
-
-                    if (workspace.UserId != Convert.ToInt32(Request.Headers[_apiGatewayOptions.Http.Headers.UserId])) {
-                        await webSocket.SendAsync<IWorkspaceError>(new() {
-                            Message = "This is not your workspace"
-                        });
-
-                        throw new Exception("This is not your workspace");
-                    }
-
-                    while (true) {
-                        var receiveMessage = await webSocket.ReceiveAsync<IWorkspaceRequest>();
-
-                        try {
-                            switch (receiveMessage.Type) {
-                                case "get-struct": {
-                                    await webSocket.SendAsync(_workspaceService.GetWorkspaceStuct(workspace.Guid));
-                                    break;
-                                } case "get-file-content": {
-                                    await webSocket.SendAsync<IWorkspaceItem>(new() {
-                                        Type = "file",
-                                        Name = receiveMessage.Message,
-                                        Content = _fileService.ReadFile(receiveMessage.Message)
-                                    });
-                                    break;
-                                } default: {
-                                    await webSocket.SendAsync<IWorkspaceError>(new() {
-                                        Message = "Unknown message type"
-                                    });
-                                    break;
-                                }
-                            }
-                        } catch (Exception error) {
-                            await webSocket.SendAsync<IWorkspaceError>(new() {
-                                Message = "Bad message struct"
-                            });
-                        }
-                    }
-                } catch (Exception error) {
-                    _logger.Log(LogLevel.Information, error.Message);
-                } finally {
-                    if (webSocket.State == WebSocketState.Open) {
-                        await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, null, CancellationToken.None);
-                    }
-                }
-            } else {
-                HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            }
-        }
-
         [HttpPost("rename")]
         public async Task<ActionResult<IWorkspace>> RenameWorkspace([FromBody] IRenameWorkspaceHttpRequest body) {
             var workspace = await _workspaceService.GetWorkspaceByIdAsync(body.Id);

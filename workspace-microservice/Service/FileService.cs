@@ -1,8 +1,9 @@
 ﻿namespace WorkspaceMicroservice.Service {
     public interface IFileService {
         public bool CreateFile(string path);
-        public string ReadFile(string path);
-        public void WriteFile(string path, string content);
+        public string? ReadFile(string path);
+        public bool RenameFile(string oldPath, string newPath);
+        public bool WriteFile(string path, string content);
         public bool DeleteFile(string path);
     }
     public class FileService : IFileService {
@@ -14,12 +15,27 @@
             return false;
         }
 
-        public string ReadFile(string path) {
-            return File.ReadAllText(path);
+        public string? ReadFile(string path) {
+            if (File.Exists(path)) {
+                return File.ReadAllText(path);
+            }
+            return null;
         }
 
-        public void WriteFile(string path, string content) {
-            File.WriteAllText(path, content);
+        public bool RenameFile(string oldPath, string newPath) {
+            if (File.Exists(oldPath) && !File.Exists(newPath)) {
+                File.Move(oldPath, newPath);
+                return true;
+            }
+            return false;
+        }
+
+        public bool WriteFile(string path, string content) {
+            if (File.Exists(path)) {
+                File.WriteAllText(path, content);
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteFile(string path) {

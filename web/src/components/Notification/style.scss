@@ -1,0 +1,21 @@
+.notification-block {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 200;
+
+    .notification {
+        transition: all 0.5 ease-in-out;
+        margin-top: 30px;
+        display: flex;
+        border: 2px solid #f14c4c;
+        border-radius: 15px;
+        background-color: #f14c4c;
+        font-weight: 700;
+        color: #d4d4d4;
+    }
+}

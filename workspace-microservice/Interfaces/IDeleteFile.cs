@@ -1,10 +1,10 @@
 ﻿namespace WorkspaceMicroservice.Interfaces {
-    public class IDeleteWorkspaceHttpRequest {
-        public int Id { get; set; }
+    public class IDeleteFileHttpRequest {
+        public int WorkspaceId { get; set; }
         public string Path { get; set; }
     }
 
-    public class IDeleteWorkspaceHttpResponse {
+    public class IDeleteFileHttpResponse {
         public string Path { get; set; }
     }
 }

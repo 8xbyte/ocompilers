@@ -1,0 +1,15 @@
+.default-icon-button {
+    background: transparent;
+    color: #d4d4d4;
+    border: 0;
+    outline: none;
+
+    &:hover {
+        background: #3c3c3c;
+    }
+
+    .default-icon {
+        width: 26px;
+        height: 26px;
+    }
+}

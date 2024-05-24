@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Shared.Interfaces.Options;
+using System.IO;
 using WorkspaceMicroservice.Contexts;
 using WorkspaceMicroservice.Interfaces;
 using WorkspaceMicroservice.Models;
+using ZstdSharp.Unsafe;
 
 namespace WorkspaceMicroservice.Service {
     public interface IWorkspaceService {
@@ -13,12 +15,13 @@ namespace WorkspaceMicroservice.Service {
         public Task<IEnumerable<WorkspaceModel>> GetUserWorkspacesAsync(int userId);
         public Task<WorkspaceModel> DeleteWorkspaceAsync(WorkspaceModel model);
 
-        public IEnumerable<IWorkspaceItem> GetWorkspaceStuct(string path);
+        public IEnumerable<IWorkspaceStructItem> GetWorkspaceStruct(string path);
     }
 
-    public class WorkspaceService(ApplicationContext context, IOptions<IWorkspaceOptions> workspaceOptions) : IWorkspaceService {
+    public class WorkspaceService(ApplicationContext context, IFileService fileService, IOptions<IWorkspaceOptions> workspaceOptions) : IWorkspaceService {
         private readonly ApplicationContext _context = context;
         private readonly IWorkspaceOptions _workspaceOptions = workspaceOptions.Value;
+        private readonly IFileService _fileService = fileService;
 
         public async Task<WorkspaceModel?> CreateWorkspaceAsync(int userId, string name) {
             var userWorkspaces = await GetUserWorkspacesAsync(userId);
@@ -58,24 +61,23 @@ namespace WorkspaceMicroservice.Service {
             return workspace.Entity;
         }
 
-        public IEnumerable<IWorkspaceItem> GetWorkspaceStuct(string path) {
-            var workspaceItems = new List<IWorkspaceItem>();
+        public IEnumerable<IWorkspaceStructItem> GetWorkspaceStruct(string path) {
+            var workspaceItems = new List<IWorkspaceStructItem>();
 
             foreach (var directory in Directory.GetDirectories(path)) {
                 workspaceItems.Add(new() {
                     Type = "directory",
-                    Name = directory,
-                    Content = null,
-                    Items = GetWorkspaceStuct(directory)
+                    Name = Path.GetDirectoryName(directory),
+                    Items = GetWorkspaceStruct(directory)
                 });
             }
 
             foreach (var file in Directory.GetFiles(path)) {
                 workspaceItems.Add(new() {
                     Type = "file",
-                    Name = file,
-                    Content = null,
-                    Items = null
+                    Name = Path.GetFileName(file),
+                    Items = null,
+                    Content = _fileService.ReadFile(file)
                 });
             }
 

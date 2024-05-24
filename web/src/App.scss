@@ -1,0 +1,29 @@
+.app {
+    padding: 5px;
+    display: flex;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #3c3c3c;
+
+    @media screen and (min-width: 0px) {
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+    }
+
+    .editor-block {
+        flex: 1;
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+
+        .buttons-block {
+            .build-button {
+                font-weight: 700;
+                font-size: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.terminal-block {
+    min-height: 200px;
+    border: 1px solid #007fd4;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    flex: 1;
+
+    .terminal-area {
+        padding: 10px;
+        font-family: Consolas, "Courier New", monospace;
+        font-weight: normal;
+        font-size: 14px;
+        font-feature-settings: "liga" 0, "calt" 0;
+        font-variation-settings: normal;
+        line-height: 19px;
+        min-height: 100%;
+        min-width: 100%;
+        background: transparent;
+        color: #d4d4d4;
+        border: 0;
+        outline: none;
+        resize: none;
+    }
+}
