@@ -108,6 +108,9 @@ const workspaceStructSlice = createSlice({
     name: 'workspace/struct',
     initialState,
     reducers: {
+        workspaceClearFiles(state) {
+            state.files = []
+        },
         workspaceStructAddFile(state, action: PayloadAction<IWorkspaceStructItem>) {
             state.files.push({
                 type: 'file',
@@ -222,5 +225,5 @@ const workspaceStructSlice = createSlice({
     },
 })
 
-export const { workspaceStructDeleteFile, workspaceStructAddFile, workspaceStructWriteFile, workspaceStructSetOpennedFile } = workspaceStructSlice.actions
+export const { workspaceClearFiles, workspaceStructDeleteFile, workspaceStructAddFile, workspaceStructWriteFile, workspaceStructSetOpennedFile } = workspaceStructSlice.actions
 export default workspaceStructSlice.reducer

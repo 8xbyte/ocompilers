@@ -35,15 +35,18 @@ const ControlBlock: React.FC = () => {
             }
 
             socket.onmessage = (e) => {
-                let json: IRuntimeMessage = JSON.parse(e.data)
-                console.log(json)
-                if (json.type === 'runtime-start') {
-                    dispatch(enableTerminalInput())
-                } else if (json.type === 'runtime-end') {
-                    dispatch(disableTerminalInput())
-                    socket.close()
-                }
-                dispatch(addTerminalOutputMessage(json.message + '\n'))
+                console.log(e.data)
+                try {
+                    let json = JSON.parse(e.data)
+
+                    if (json.type === 'runtime-start') {
+                        dispatch(enableTerminalInput())
+                    } else if (json.type === 'runtime-end') {
+                        dispatch(disableTerminalInput())
+                        socket.close()
+                    }
+                    dispatch(addTerminalOutputMessage(json.message + '\n'))
+                } catch {}
             }
 
             socket.onerror = (e) => {
@@ -79,8 +82,12 @@ const ControlBlock: React.FC = () => {
                 </select>
             </div>
             <div className='side-block'>
-                <IconButton onClick={() => setSocket(new WebSocket(`ws://127.0.0.1:5000/api/compilers/${monacoEditor.currentLanguage}`))} className='button-icon' iconFile={RunIcon} />
-                <IconButton onClick={() => setSocket(new WebSocket(`ws://127.0.0.1:5000/api/compilers/${monacoEditor.currentLanguage}?isDebug=true`))} className='button-icon' iconFile={RunDebugIcon} />
+                <IconButton onClick={() => {
+                    setSocket(new WebSocket(`ws://127.0.0.1:5000/api/compilers/${monacoEditor.currentLanguage}`))
+                }} className='button-icon' iconFile={RunIcon} />
+                <IconButton onClick={() => {
+                    setSocket(new WebSocket(`ws://127.0.0.1:5000/api/compilers/${monacoEditor.currentLanguage}?isDebug=true`))
+                }} className='button-icon' iconFile={RunDebugIcon} />
             </div>
         </BorderBlock>
     )

@@ -26,20 +26,6 @@ const ExplorerBlock: React.FC = () => {
     }, [monacoEditor.text])
 
     useEffect(() => {
-        let timeoutId = setTimeout(() => {
-            if (workspace.current !== null && workspaceStruct.openned) {
-                console.log("Request")
-                dispatch(writeFileWorkspaceStruct({
-                    workspaceId: workspace.get.result[workspace.current].id,
-                    path: workspaceStruct.openned,
-                    content: monacoEditor.text
-                }))
-            }
-        }, 5000)
-        return () => clearTimeout(timeoutId)
-    }, [monacoEditor.text])
-
-    useEffect(() => {
         if (workspace.current !== null) {
             dispatch(getWorkspaceStruct({
                 id: workspace.get.result[workspace.current].id
@@ -74,6 +60,15 @@ const ExplorerBlock: React.FC = () => {
                         </div>
                         <div className='file-block'>
                             <IconButton onClick={(e) => {
+                                if (workspace.current !== null && workspaceStruct.openned) {
+                                    dispatch(writeFileWorkspaceStruct({
+                                        workspaceId: workspace.get.result[workspace.current].id,
+                                        path: inputRefs.current[index]!.value,
+                                        content: monacoEditor.text
+                                    }))
+                                }
+                            }} className='file-icon' iconName='save' />
+                            <IconButton onClick={(e) => {       
                                 if (workspace.current !== null) {
                                     dispatch(deleteFileWorkspaceStruct({
                                         workspaceId: workspace.get.result[workspace.current].id,
@@ -108,6 +103,7 @@ const ExplorerBlock: React.FC = () => {
                         }} className='file-input' defaultValue={'new file'} />
                     </div>
                     <div className='file-block'>
+                        <IconButton className='file-icon' iconName='save' />
                         <IconButton className='file-icon' iconName='trash' />
                     </div>
                 </div>}

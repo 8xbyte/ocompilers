@@ -13,6 +13,7 @@ import IconButton from '../../uikit/IconButton/IconButton'
 import Input from '../../uikit/Input/Input'
 import './style.scss'
 import { workspaceSetCurrent } from '../../store/slices/workspaceSlice'
+import { workspaceClearFiles } from '../../store/slices/workspaceStructSlice'
 
 const UserBlock: React.FC = () => {
     const dispatch = useAppDispatch()
@@ -55,6 +56,7 @@ const UserBlock: React.FC = () => {
                     </BorderBlock> : null}
                 {workspace.get.result.map((item, index) =>
                     <BorderBlock onClick={(e) => {
+                        dispatch(workspaceClearFiles())
                         dispatch(workspaceSetCurrent(index))
                     }} className='workspace-block' key={index}>
                         <Input ref={element => inputRef.current[index] = element} defaultValue={item.name} readOnly onBlur={(e) => {

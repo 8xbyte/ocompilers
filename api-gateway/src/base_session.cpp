@@ -27,6 +27,7 @@ namespace gateway {
                 auto from_url = boost::urls::url_view(from);
                 auto target_url = boost::urls::url_view(request.target());
 
+
                 if (target_url.path() == from_url.path()) {
                     is_found = true;
                     if (request.method() == boost::beast::http::verb::options) {

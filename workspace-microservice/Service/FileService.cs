@@ -9,7 +9,7 @@
     public class FileService : IFileService {
         public bool CreateFile(string path) {
             if (!File.Exists(path)) {
-                File.Create(path);
+                File.Create(path).Close();
                 return true;
             }
             return false;

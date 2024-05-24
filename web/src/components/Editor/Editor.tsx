@@ -31,12 +31,14 @@ const Editor: React.FC<IProps> = (props) => {
     }, [monEditor.currentLanguage])
 
     useEffect(() => {
+        console.log(monacoEditor, workspaceStruct.openned)
         if (monacoEditor && workspaceStruct.openned) {
-            let content = workspaceStruct.files.find((item) => item.name === workspaceStruct.openned)!.content
-            console.log(content)
-            monacoEditor.setValue(content)
+            const file = workspaceStruct.files.find((item) => item.name === workspaceStruct.openned)
+            if (file) {
+                monacoEditor.setValue(file.content)
+            }
         }
-    }, [workspaceStruct.openned])
+    }, [workspaceStruct.openned, monacoEditor])
 
     useEffect(() => {
         if (monacoEditorRef.current) {

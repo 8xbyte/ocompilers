@@ -6,7 +6,7 @@ using System.Net.WebSockets;
 using Shared.Services;
 
 namespace PythonInterpreterMicroservice.Controllers {
-    [Route("api/compilers/python")]
+    [Route("api/interpreter/python")]
     [ApiController]
     public class InterpreterController(IRuntimeService runtimeService, ILogger<InterpreterController> logger) : ControllerBase {
         private readonly IRuntimeService _runtimeService = runtimeService;
