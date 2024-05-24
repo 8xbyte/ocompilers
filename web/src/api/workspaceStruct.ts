@@ -7,7 +7,7 @@ import { IWorkspaceStructCreateDirectoryRequest, IWorkspaceStructCreateDirectory
 
 export const getWorkspaceStruct = createAsyncThunk('workspace/struct/get', async (data: IWorkspaceStructGet, thunkApi) => {
     try {
-        const response = await axios.get<Array<IWorkspaceStructItem>>('http://127.0.0.1:5000/api/workspace/struct/get', {
+        const response = await axios.get<Array<IWorkspaceStructItem>>('https://astra.oregona.ru/api/workspace/struct/get', {
             params: data,
             withCredentials: true
         })
@@ -25,7 +25,7 @@ export const getWorkspaceStruct = createAsyncThunk('workspace/struct/get', async
 
 export const createFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/create', async (data: IWorkspaceStructCreateFileRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructCreateFileResponse>('http://127.0.0.1:5000/api/workspace/struct/file/create', data, {
+        const response = await axios.post<IWorkspaceStructCreateFileResponse>('https://astra.oregona.ru/api/workspace/struct/file/create', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -42,7 +42,7 @@ export const createFileWorkspaceStruct = createAsyncThunk('workspace/struct/file
 
 export const readFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/read', async (data: IWorkspaceStructReadFileRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructReadFileResponse>('http://127.0.0.1:5000/api/workspace/struct/file/read', data, {
+        const response = await axios.post<IWorkspaceStructReadFileResponse>('https://astra.oregona.ru/api/workspace/struct/file/read', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -59,7 +59,7 @@ export const readFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/r
 
 export const writeFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/write', async (data: IWorkspaceStructWriteFileRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructWriteFileResponse>('http://127.0.0.1:5000/api/workspace/struct/file/write', data, {
+        const response = await axios.post<IWorkspaceStructWriteFileResponse>('https://astra.oregona.ru/api/workspace/struct/file/write', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -76,7 +76,7 @@ export const writeFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/
 
 export const renameFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/rename', async (data: IWorkspaceStructRenameFileRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructRenameFileResponse>('http://127.0.0.1:5000/api/workspace/struct/file/rename', data, {
+        const response = await axios.post<IWorkspaceStructRenameFileResponse>('https://astra.oregona.ru/api/workspace/struct/file/rename', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -93,7 +93,7 @@ export const renameFileWorkspaceStruct = createAsyncThunk('workspace/struct/file
 
 export const deleteFileWorkspaceStruct = createAsyncThunk('workspace/struct/file/delete', async (data: IWorkspaceStructDeleteFileRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructDeleteFileResponse>('http://127.0.0.1:5000/api/workspace/struct/file/delete', data, {
+        const response = await axios.post<IWorkspaceStructDeleteFileResponse>('https://astra.oregona.ru/api/workspace/struct/file/delete', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -110,7 +110,7 @@ export const deleteFileWorkspaceStruct = createAsyncThunk('workspace/struct/file
 
 export const createDirectoryWorkspaceStruct = createAsyncThunk('workspace/struct/directory/create', async (data: IWorkspaceStructCreateDirectoryRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructCreateDirectoryResponse>('http://127.0.0.1:5000/api/workspace/struct/directory/create', data, {
+        const response = await axios.post<IWorkspaceStructCreateDirectoryResponse>('https://astra.oregona.ru/api/workspace/struct/directory/create', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -127,7 +127,7 @@ export const createDirectoryWorkspaceStruct = createAsyncThunk('workspace/struct
 
 export const renameDirectoryWorkspaceStruct = createAsyncThunk('workspace/struct/directory/rename', async (data: IWorkspaceStructRenameDirectoryRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructRenameDirectoryResponse>('http://127.0.0.1:5000/api/workspace/struct/directory/create', data, {
+        const response = await axios.post<IWorkspaceStructRenameDirectoryResponse>('https://astra.oregona.ru/api/workspace/struct/directory/create', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -144,7 +144,7 @@ export const renameDirectoryWorkspaceStruct = createAsyncThunk('workspace/struct
 
 export const deleteDirectoryWorkspaceStruct = createAsyncThunk('workspace/struct/directory/delete', async (data: IWorkspaceStructDeleteDirectoryRequest, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspaceStructDeleteDirectoryResponse>('http://127.0.0.1:5000/api/workspace/struct/directory/delete', data, {
+        const response = await axios.post<IWorkspaceStructDeleteDirectoryResponse>('https://astra.oregona.ru/api/workspace/struct/directory/delete', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)

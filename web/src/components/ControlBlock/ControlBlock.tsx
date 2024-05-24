@@ -83,10 +83,10 @@ const ControlBlock: React.FC = () => {
             </div>
             <div className='side-block'>
                 <IconButton onClick={() => {
-                    setSocket(new WebSocket(`ws://127.0.0.1:5000/api/compilers/${monacoEditor.currentLanguage}`))
+                    setSocket(new WebSocket(`wss://astra.oregona.ru/api/compilers/${monacoEditor.currentLanguage}`))
                 }} className='button-icon' iconFile={RunIcon} />
                 <IconButton onClick={() => {
-                    setSocket(new WebSocket(`ws://127.0.0.1:5000/api/compilers/${monacoEditor.currentLanguage}?isDebug=true`))
+                    setSocket(new WebSocket(`wss://astra.oregona.ru/api/compilers/${monacoEditor.currentLanguage}?isDebug=true`))
                 }} className='button-icon' iconFile={RunDebugIcon} />
             </div>
         </BorderBlock>

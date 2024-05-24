@@ -6,7 +6,7 @@ import { IWorkspace } from "../types/workspace";
 
 export const getWorkspaces = createAsyncThunk('workspace/get', async (data, thunkApi) => {
     try {
-        const response = await axios.get<Array<IWorkspace>>('http://127.0.0.1:5000/api/workspace/get', {
+        const response = await axios.get<Array<IWorkspace>>('https://astra.oregona.ru/api/workspace/get', {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -27,7 +27,7 @@ interface ICreateWorkspaceData {
 
 export const createWorkspace = createAsyncThunk('workspace/create', async (data: ICreateWorkspaceData, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspace>('http://127.0.0.1:5000/api/workspace/create', data, {
+        const response = await axios.post<IWorkspace>('https://astra.oregona.ru/api/workspace/create', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -49,7 +49,7 @@ interface IRenameWorkspaceData {
 
 export const renameWorkspace = createAsyncThunk('workspace/rename', async (data: IRenameWorkspaceData, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspace>('http://127.0.0.1:5000/api/workspace/rename', data, {
+        const response = await axios.post<IWorkspace>('https://astra.oregona.ru/api/workspace/rename', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -70,7 +70,7 @@ interface IDeleteWorkspaceData {
 
 export const deleteWorkspace = createAsyncThunk('workspace/delete', async (data: IDeleteWorkspaceData, thunkApi) => {
     try {
-        const response = await axios.post<IWorkspace>('http://127.0.0.1:5000/api/workspace/delete', data, {
+        const response = await axios.post<IWorkspace>('https://astra.oregona.ru/api/workspace/delete', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)

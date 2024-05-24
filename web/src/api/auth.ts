@@ -14,7 +14,7 @@ interface ILoginData {
 
 export const login = createAsyncThunk('auth/login', async (data: ILoginData, thunkApi) => {
     try {
-        const response = await axios.post<IMessage>('http://127.0.0.1:5000/api/auth/login', data, {
+        const response = await axios.post<IMessage>('https://astra.oregona.ru/api/auth/login', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
@@ -36,7 +36,7 @@ interface IRegisterData {
 
 export const register = createAsyncThunk('auth/register', async (data: IRegisterData, thunkApi) => {
     try {
-        const response = await axios.post<IMessage>('http://127.0.0.1:5000/api/auth/register', data, {
+        const response = await axios.post<IMessage>('https://astra.oregona.ru/api/auth/register', data, {
             withCredentials: true
         })
         return thunkApi.fulfillWithValue(response.data)
